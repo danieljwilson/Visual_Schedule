@@ -27,7 +27,7 @@ function draw() {
   var date = new Date();
   var s = second();
   var m = minute();                    // Values from 0 - 59
-  var h = date.getUTCHours() + 1;      // Values from 0 - 23, using UTC so same for whoever is viewing
+  var h = date.getUTCHours() + 1;      // Values from 0 - 23, UTC, CHANGE FOR YOUR OWN TIMEZONE!!
   var d = date.getDay();               // d is an int from 0-6
 
   // Create subtable based on weekday
