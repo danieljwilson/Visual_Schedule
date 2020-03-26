@@ -7,19 +7,19 @@ Visual Schedule
 Screens
 =======
 
-There are two screens. Clicking on either switches.
+There are two screens. Clicking switches to the other one.
 
 Screen 1: Full Schedule
 -----------------------
 
 .. image:: images/screen1.png
-   :width: 400
+   :width: 300
 
 Screen 2: Current Event
 -----------------------
 
 .. image:: images/screen2.png
-   :width: 400
+   :width: 300
 
 Contact
 =============
