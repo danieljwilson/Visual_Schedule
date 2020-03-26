@@ -56,7 +56,7 @@ function draw() {
         if (current_time > task_time_start && current_time > task_time_end) { // check if over
           // draw rect
           rect_color = color(sub_table[str(i)].obj.color);
-          rect_color.setAlpha(160);
+          rect_color.setAlpha(210);
           fill(rect_color);
           rect(x1*width, 0, x2*width-x1*width, height);
         }
@@ -64,7 +64,7 @@ function draw() {
         // ALL ACTIVITIES
         // draw rect
         rect_color = color(sub_table[str(i)].obj.color);
-        rect_color.setAlpha(90);
+        rect_color.setAlpha(50);
         fill(rect_color);
         rect(x1*width, 0, x2*width-x1*width, height);
 
@@ -95,7 +95,7 @@ function draw() {
 
           // SET COLOR
           rect_color = color(sub_table[str(i)].obj.color);
-          rect_color.setAlpha(160);
+          rect_color.setAlpha(210);
           fill(rect_color);
 
           // DRAW RECT
