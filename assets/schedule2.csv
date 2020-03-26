@@ -1,0 +1,27 @@
+day,start_hour,start_minute,end_hour,end_minute,duration,activity,act_v,color,category
+1,0,0,6,45,525,sleep,s\nl\ne\ne\np,#6da4bf,off
+1,6,45,7,0,15,wake,w\na\nk\ne,#ff7373,work
+1,7,0,8,45,105,learn,l\ne\na\nr\nn,#aed4ff,work
+1,8,45,10,30,105,school,s\nc\nh\no\no\nl,#aed4ff,work
+1,10,30,18,0,450,kids,k\ni\nd\ns,#e6db74,family
+1,18,0,18,40,40,data journalism,d\na\nt\na\n \nj\no\nu\nr\nn\na\nl\ni\ns\nm,#aed4ff,work
+1,18,40,19,0,20,cook,c\no\no\nk,#e6db74,family
+1,19,0,20,0,60,dinner,d\ni\nn\nn\ne\nr,#bada55,personal
+1,20,0,21,0,60,admin,a\nd\nm\ni\nn,#aed4ff,work
+1,21,0,21,30,30,fun,f\nu\nn,#bada55,personal
+1,21,30,22,0,30,read,r\ne\na\nd,#bada55,personal
+1,22,0,23,59,525,sleep,s\nl\ne\ne\np,#6da4bf,off
+2,0,0,6,45,525,sleep,sleep,#6da4bf,off
+2,6,45,6,50,5,wake,wake,#ff7373,family
+2,6,50,10,30,220,kids,kids,#e6db74,family
+2,10,30,12,15,105,bike,bike,#bada55,personal
+2,12,15,14,0,105,write,write,#aed4ff,work
+2,14,0,15,45,105,programming,programming,#aed4ff,work
+2,15,45,16,15,30,nap,nap,#bada55,personal
+2,16,15,18,0,105,art,art,#aed4ff,work
+2,18,0,19,0,60,kids,kids,#e6db74,family
+2,19,0,20,0,60,dinner,dinner,#bada55,personal
+2,20,0,21,0,60,admin,admin,#aed4ff,work
+2,21,0,21,30,30,fun,fun,#bada55,personal
+2,21,30,22,0,30,read,read,#bada55,personal
+2,22,0,23,59,525,sleep,sleep,#6da4bf,off

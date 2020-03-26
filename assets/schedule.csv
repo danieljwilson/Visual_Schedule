@@ -1,0 +1,25 @@
+day,hour,minute,activity,color
+2,6,45,wake,red
+2,6,50,kids,yellow
+2,10,30,bike,green
+2,12,15,write,blue
+2,14,0,programming,blue
+2,15,45,nap,green
+2,16,15,art,blue
+2,18,0,kids,yellow
+2,19,0,dinner,green
+2,20,0,admin,blue
+2,21,0,fun,green
+2,21,30,read,green
+2,22,0,sleep,grey
+1,6,45,wake,red
+1,7,0,learn,blue
+1,8,45,school,green
+1,10,30,kids,blue
+1,18,0,data journalism,blue
+1,18,40,cook,yellow
+1,19,0,dinner,green
+1,20,0,admin,blue
+1,21,0,fun,green
+1,21,30,read,green
+1,22,0,sleep,grey

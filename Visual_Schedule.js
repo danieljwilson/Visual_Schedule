@@ -1,0 +1,222 @@
+var myFont;
+var sound;
+var previous_event = 0;
+var version = "full";
+
+let table;
+let sub_table;
+let rect_color;
+
+function preload() {
+  table = loadTable('assets/schedule2.csv', 'csv', 'header'); // table structure: https://docs.google.com/spreadsheets/d/1O-Ixi8d5Gf1nmgDBYvxo0RLJXK1R2jfMXBvSlnuaFuU/edit?usp=sharing
+  myFont = loadFont('assets/Hasklig-ExtraLight.otf');
+  sound = loadSound('assets/Electronic_Chime.ogg');
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+  textFont(myFont);
+  textAlign(CENTER, CENTER);
+}
+
+function draw() {
+  background(204);
+
+  // GET DAY/TIME
+  var date = new Date();
+  var s = second();
+  var m = minute();                    // Values from 0 - 59
+  var h = date.getUTCHours() + 1;      // Values from 0 - 23, using UTC so same for whoever is viewing
+  var d = date.getDay();               // d is an int from 0-6
+
+  // Create subtable based on weekday
+  if (d==1 || d==3 || d==5) {          // m/w/f
+    sub_table = table.findRows(str(1), 'day');
+  }
+
+  if (d==2 || d==4 ) {                 // t/th
+    sub_table = table.findRows(str(2), 'day');
+  }
+
+  // IF WEEKDAY
+  if (typeof sub_table != "undefined") {
+    if (version=="full") { // full schedule version
+      for (var i = 0; i<Object.keys(sub_table).length; i = i+1) {
+        var task_time_start = sub_table[str(i)].obj.start_hour * 3600 + sub_table[str(i)].obj.start_minute * 60; // in seconds
+        var task_time_end = sub_table[str(i)].obj.end_hour * 3600 + sub_table[str(i)].obj.end_minute * 60;       // in seconds
+        var current_time = s + 60*(m + 60*h);
+        
+        // calculate x coords of boxes
+        var full_width = 24 * 3600;
+        var x1 = task_time_start/full_width;
+        var x2 = task_time_end/full_width;
+
+        // COMPLETED ACTIVITIES
+        if (current_time > task_time_start && current_time > task_time_end) { // check if over
+          // draw rect
+          rect_color = color(sub_table[str(i)].obj.color);
+          rect_color.setAlpha(160);
+          fill(rect_color);
+          rect(x1*width, 0, x2*width-x1*width, height);
+        }
+
+        // ALL ACTIVITIES
+        // draw rect
+        rect_color = color(sub_table[str(i)].obj.color);
+        rect_color.setAlpha(90);
+        fill(rect_color);
+        rect(x1*width, 0, x2*width-x1*width, height);
+
+        // add text on mouseover
+        if (current_time <= task_time_start || current_time > task_time_end) { //only on inactive activities
+          textSize(30);
+          fill(0);
+          var current_task = sub_table[str(i)].obj.activity;
+          // find activity that has cursor
+          if (winMouseX > x1*width && winMouseX < x1*width + (x2*width-x1*width)) {
+            text(addNewlines(current_task), x1*width + (x2*width-x1*width)/2, height/2);
+          }
+        }
+
+        // ACTIVE ACTIVITY
+        if (current_time >= task_time_start && current_time < task_time_end) { // check which activity is currently happening
+          //print('wrong');
+          var current_task = str(sub_table[str(i)].obj.activity);
+          var duration = task_time_end - task_time_start;
+          var elapsed = current_time - task_time_start;
+          var current_event = i;
+
+          // PLAY SOUND ON ACTIVITY CHANGE
+          if (current_event != previous_event) {
+            sound.play();
+          }
+          previous_event = current_event;
+
+          // SET COLOR
+          rect_color = color(sub_table[str(i)].obj.color);
+          rect_color.setAlpha(160);
+          fill(rect_color);
+
+          // DRAW RECT
+          full_width = 24 * 3600;
+          x1 = task_time_start/full_width;
+          x2 = task_time_end/full_width;
+          stroke(0);
+          rect(x1*width, height - (elapsed * height/duration), x2*width-x1*width, height);
+          //noStroke();
+
+          // TEXT
+          textSize(map(sin(frameCount*0.04), -1, 1, 30, 32));
+          fill(0);
+          text(addNewlines(current_task), x1*width + (x2*width-x1*width)/2, height/2);
+        } 
+        // add break rects
+        var activity = sub_table[str(i)].obj.activity;
+        if (activity == "learn" || activity == "school" || activity == "write" || activity == "programming" || activity == "art") {
+          push();
+          noStroke();
+          rect_color = color(0);
+          rect_color.setAlpha(40);
+          fill(rect_color);
+          rect(x1*width, ((105-52)/105)*height - (17/105)*height, x2*width-x1*width, (17/105)*height); // 1st break
+          rect(x1*width, 0, x2*width-x1*width, (6/105)*height); // 2nd break
+          pop();
+        }
+      }
+    }
+    // SINGLE VIEW VERSION  
+    if (version=="single") {
+      for (var i = 0; i<Object.keys(sub_table).length; i = i+1) {
+        var task_time_start = sub_table[str(i)].obj.start_hour * 3600 + sub_table[str(i)].obj.start_minute * 60; // in seconds
+        var task_time_end = sub_table[str(i)].obj.end_hour * 3600 + sub_table[str(i)].obj.end_minute * 60; // in seconds
+        var current_time = s + 60*(m + 60*h);
+
+        var full_width = 24 * 3600;
+        var x1 = task_time_start/full_width;
+        var x2 = task_time_end/full_width;
+        
+        // ACTIVE ACTIVITY
+        if (current_time >= task_time_start && current_time < task_time_end) {
+          var current_task = str(sub_table[str(i)].obj.activity);
+          var duration = task_time_end - task_time_start;
+          var elapsed = current_time - task_time_start;
+          var current_event = i;
+
+          // PLAY SOUND ON ACTIVITY CHANGE
+          if (current_event != previous_event) {
+            sound.play();
+          }
+          previous_event = current_event;
+
+          // SET COLOR
+          rect_color = color(sub_table[str(i)].obj.color);
+          rect_color.setAlpha(160);
+          fill(rect_color);
+
+          // DRAW FULL RECT
+          stroke(0);
+          rect(0, 0, width, height);
+          noStroke();
+          // DRAW PROGRESS RECT
+          rect(0, 0, (elapsed/duration) * width, height);
+
+          // TEXT
+          textSize(map(sin(frameCount*0.04), -1, 1, 48, 50));
+          fill(0);
+          text(current_task, width/2, height/2);
+          textSize(12);
+          text(str(parseInt(elapsed/60))+"\n-\n" + str(parseInt(duration/60)), elapsed/duration*width, height/2);
+          
+          // add break rects
+          var activity = sub_table[str(i)].obj.activity;
+          if (activity == "learn" || activity == "school" || activity == "write" || activity == "programming" || activity == "art") {
+            push();
+            noStroke();
+            rect_color = color(0);
+            rect_color.setAlpha(20);
+            fill(rect_color);
+            rect((52/105)*width, 0, (17/105)*width, height); // 1st break
+            rect((99/105)*width, 0, (6/105)*width, height); // 2nd break
+            pop();
+          }
+        } 
+      }
+    }
+  }
+
+  // IF NOT WEEKDAY
+  else {
+    //WEEKEND
+    fill(15);
+    rect(0, 0, width, height);
+    fill(230);
+    text('WEEKEND', width/2, height/2);
+  }
+}
+
+function mousePressed() {
+  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+    if (version != "single") {
+      version = "single";
+    } else {
+      version = "full";
+    }
+    //var fs = fullscreen();
+    //fullscreen(!fs);
+    sound.play();
+  }
+}
+
+function windowResized() {
+  resizeCanvas(displayWidth, displayHeight);
+}
+
+function addNewlines(str) {
+  var result = '';
+  while (str.length > 0) {
+    result += str.substring(0, 1) + '\n';
+    str = str.substring(1);
+  }
+  return result;
+}
