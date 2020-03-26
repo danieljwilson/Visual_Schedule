@@ -4,7 +4,7 @@ Visual Schedule
 
 - Just create your own schedule csv based on this template.
 
-Screebs
+Screens
 =======
 
 There are two screens. Clicking on either switches.
