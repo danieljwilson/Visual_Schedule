@@ -4,21 +4,16 @@ Visual Schedule
 
 - Just create your own schedule csv based on this template.
 
-.. image:: https://readthedocs.org/projects/cognitive-regulation-fmri-project/badge/?version=latest
-   :target: https://cognitive-regulation-fmri-project.readthedocs.io/en/latest/?badge=latest&style=for-the-badge
-   :alt: Documentation Status
+Screebs
+=======
 
-Documentation
-=============
+There are two screens. Clicking on either switches.
 
-Read the documentation online at:
-http://cognitive-regulation-fmri-project.rtfd.io
+Screen 1: Full Schedule
+-----------------------
 
-Optionally, build the documentation from the ``docs/`` folder::
-
-  $ pip install sphinx
-  $ cd docs/
-  $ make html
+Screen 2: Current Event
+-----------------------
 
 Contact
 =============
