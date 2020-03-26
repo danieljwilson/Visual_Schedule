@@ -151,7 +151,7 @@ function draw() {
 
           // SET COLOR
           rect_color = color(sub_table[str(i)].obj.color);
-          rect_color.setAlpha(160);
+          rect_color.setAlpha(60);
           fill(rect_color);
 
           // DRAW FULL RECT
@@ -159,6 +159,8 @@ function draw() {
           rect(0, 0, width, height);
           noStroke();
           // DRAW PROGRESS RECT
+          rect_color.setAlpha(190);
+          fill(rect_color);
           rect(0, 0, (elapsed/duration) * width, height);
 
           // TEXT
