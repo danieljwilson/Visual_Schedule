@@ -27,7 +27,7 @@ function draw() {
   var date = new Date();
   var s = second();
   var m = minute();                    // Values from 0 - 59
-  var h = date.getUTCHours() + 1;      // Values from 0 - 23, UTC, CHANGE FOR YOUR OWN TIMEZONE!!
+  var h = date.getUTCHours() + 2;      // Values from 0 - 23, UTC, CHANGE FOR YOUR OWN TIMEZONE!!
   var d = date.getDay();               // d is an int from 0-6
 
   // Create subtable based on weekday
@@ -148,18 +148,17 @@ function draw() {
             sound.play();
           }
           previous_event = current_event;
-
-          // SET COLOR
+          
+          // DRAW FULL RECT
+          // set color
+          stroke(0);
           rect_color = color(sub_table[str(i)].obj.color);
           rect_color.setAlpha(60);
           fill(rect_color);
-
-          // DRAW FULL RECT
-          stroke(0);
           rect(0, 0, width, height);
           noStroke();
           // DRAW PROGRESS RECT
-          rect_color.setAlpha(190);
+          rect_color.setAlpha(200);
           fill(rect_color);
           rect(0, 0, (elapsed/duration) * width, height);
 
