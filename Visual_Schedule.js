@@ -10,7 +10,7 @@ let rect_color;
 function preload() {
   table = loadTable('assets/schedule2.csv', 'csv', 'header'); // table structure: https://docs.google.com/spreadsheets/d/1O-Ixi8d5Gf1nmgDBYvxo0RLJXK1R2jfMXBvSlnuaFuU/edit?usp=sharing
   myFont = loadFont('assets/Hasklig-ExtraLight.otf');
-  sound = loadSound('assets/Electronic_Chime.ogg');
+  sound = loadSound('assets/Electronic_Chime.mp4');
 }
 
 function setup() {
@@ -194,9 +194,11 @@ function draw() {
     fill(230);
     text('WEEKEND', width/2, height/2);
   }
+  // CHECK FOR ORIENTATION CHANGE
+  if (window.DeviceOrientationEvent) { window.addEventListener('orientationchange', function() { location.reload(); }, false); }
 }
 
-function mousePressed() {
+function touchStarted() {
   if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
     if (version != "single") {
       version = "single";
@@ -210,7 +212,7 @@ function mousePressed() {
 }
 
 function windowResized() {
-  resizeCanvas(displayWidth, displayHeight);
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function addNewlines(str) {
@@ -221,3 +223,11 @@ function addNewlines(str) {
   }
   return result;
 }
+
+/* prevents the mobile browser from processing some default
+ * touch events, like swiping left for "back" or scrolling
+ * the page.
+ */
+document.ontouchmove = function(event) {
+    event.preventDefault();
+};
