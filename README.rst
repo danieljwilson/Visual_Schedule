@@ -40,7 +40,7 @@ Replace ``schedule2.csv`` with your own schedule in ``csv`` format.
 2. Timing
 -----------
 
-Check how many hours of offset your timezone is from UTC. In this case I was on Summer CET.
+Check how many hours of offset your timezone is from UTC. In this case I was on Summer CET (+2).
 ::
 
     var h = date.getUTCHours() + 2;
