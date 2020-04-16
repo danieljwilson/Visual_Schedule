@@ -29,14 +29,16 @@ Personalize
 
 To use this template for your own schedule you will need to change the following lines of code:
 
-:1. Schedule:
+1. Schedule
+-----------
 
 Replace ``schedule2.csv`` with your own schedule in ``csv`` format.
 ::
 
     table = loadTable('assets/schedule2.csv', 'csv', 'header');  
 
-:2. Timing:
+2. Timing
+-----------
 
 Check how many hours of offset your timezone is from UTC. In this case I was on Summer CET.
 ::
