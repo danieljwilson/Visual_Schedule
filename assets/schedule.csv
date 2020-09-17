@@ -1,25 +1,41 @@
-day,hour,minute,activity,color
-2,6,45,wake,red
-2,6,50,kids,yellow
-2,10,30,bike,green
-2,12,15,write,blue
-2,14,0,programming,blue
-2,15,45,nap,green
-2,16,15,art,blue
-2,18,0,kids,yellow
-2,19,0,dinner,green
-2,20,0,admin,blue
-2,21,0,fun,green
-2,21,30,read,green
-2,22,0,sleep,grey
-1,6,45,wake,red
-1,7,0,learn,blue
-1,8,45,school,green
-1,10,30,kids,blue
-1,18,0,data journalism,blue
-1,18,40,cook,yellow
-1,19,0,dinner,green
-1,20,0,admin,blue
-1,21,0,fun,green
-1,21,30,read,green
-1,22,0,sleep,grey
+day,start_hour,start_minute,end_hour,end_minute,duration,activity,category,color
+1,0,0,6,45,525,sleep,off,#6da4bf
+1,6,45,7,0,15,wake,work,#ff7373
+1,7,0,9,18,138,learn 1,work,#aed4ff
+1,9,18,12,28,190,school 1,work,#aed4ff
+1,12,28,13,0,32,lunch,personal,#bada55
+1,13,0,16,27,207,school 2,work,#aed4ff
+1,16,27,17,19,52,school 3,work,#aed4ff
+1,17,19,19,0,101,kids+,family,#e6db74
+1,19,0,20,0,60,dinner,personal,#bada55
+1,20,0,21,0,60,admin,work,#aed4ff
+1,21,0,21,30,30,fun,personal,#bada55
+1,21,30,22,0,30,read,personal,#bada55
+1,22,0,23,59,525,sleep,off,#6da4bf
+2,0,0,6,45,525,sleep,off,#6da4bf
+2,6,45,7,0,15,wake,family,#ff7373
+2,7,0,9,18,138,kids+,family,#e6db74
+2,9,18,10,45,87,exercise,personal,#bada55
+2,10,45,12,46,121,school 1,work,#aed4ff
+2,12,46,13,15,29,lunch,personal,#bada55
+2,13,15,16,42,207,school 2,work,#aed4ff
+2,16,42,19,0,138,learn 2,work,#aed4ff
+2,19,0,20,0,60,dinner,personal,#bada55
+2,20,0,21,0,60,admin,work,#aed4ff
+2,21,0,21,30,30,fun,personal,#bada55
+2,21,30,22,0,30,read,personal,#bada55
+2,22,0,23,59,525,sleep,off,#6da4bf
+3,0,0,6,45,525,sleep,off,#6da4bf
+3,6,45,7,0,15,wake,work,#ff7373
+3,7,0,9,18,138,learn 1,work,#aed4ff
+3,9,18,12,28,190,school 1,work,#aed4ff
+3,12,28,13,0,32,lunch,personal,#bada55
+3,13,0,15,0,120,lab meeting,work,#aed4ff
+3,15,0,16,27,87,school 2,work,#aed4ff
+3,16,27,17,19,52,school 3,work,#aed4ff
+3,17,19,19,0,101,kids+,family,#e6db74
+3,19,0,20,0,60,dinner,personal,#bada55
+3,20,0,21,0,60,admin,work,#aed4ff
+3,21,0,21,30,30,fun,personal,#bada55
+3,21,30,22,0,30,read,personal,#bada55
+3,22,0,23,59,525,sleep,off,#6da4bf

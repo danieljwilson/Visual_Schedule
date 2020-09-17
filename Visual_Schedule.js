@@ -8,7 +8,7 @@ let sub_table;
 let rect_color;
 
 function preload() {
-  table = loadTable('assets/schedule2.csv', 'csv', 'header'); // table structure: https://docs.google.com/spreadsheets/d/1O-Ixi8d5Gf1nmgDBYvxo0RLJXK1R2jfMXBvSlnuaFuU/edit?usp=sharing
+  table = loadTable('assets/schedule.csv', 'csv', 'header'); // table structure: https://docs.google.com/spreadsheets/d/1O-Ixi8d5Gf1nmgDBYvxo0RLJXK1R2jfMXBvSlnuaFuU/edit?usp=sharing
   myFont = loadFont('assets/Hasklig-ExtraLight.otf');
   sound = loadSound('assets/Electronic_Chime.mp4');
 }
@@ -27,16 +27,20 @@ function draw() {
   var date = new Date();
   var s = second();
   var m = minute();                    // Values from 0 - 59
-  var h = date.getUTCHours() + 2;      // Values from 0 - 23, UTC, CHANGE FOR YOUR OWN TIMEZONE!!
+  var h = (24 + date.getUTCHours() - 4) % 24;      // Values from 0 - 23, UTC, CHANGE FOR YOUR OWN TIMEZONE!!
   var d = date.getDay();               // d is an int from 0-6
 
   // Create subtable based on weekday
-  if (d==1 || d==3 || d==5) {          // m/w/f
+  if (d==1 || d==4) {          // m/th
     sub_table = table.findRows(str(1), 'day');
   }
 
-  if (d==2 || d==4 ) {                 // t/th
+  if (d==2 || d==3 ) {                 // t/w
     sub_table = table.findRows(str(2), 'day');
+  }
+
+  if (d==5 ) {                 // f
+    sub_table = table.findRows(str(3), 'day');
   }
 
   // IF WEEKDAY
@@ -103,7 +107,8 @@ function draw() {
           x1 = task_time_start/full_width;
           x2 = task_time_end/full_width;
           stroke(0);
-          rect(x1*width, height - (elapsed * height/duration), x2*width-x1*width, height);
+          //rect(x1*width, height - (elapsed * height/duration), x2*width-x1*width, height); version that fills "up"
+          rect(x1*width, 0, x2*width-x1*width, elapsed * height/duration); // version that fills "down"
           //noStroke();
 
           // TEXT
@@ -113,16 +118,29 @@ function draw() {
         } 
         // add break rects
         var activity = sub_table[str(i)].obj.activity;
-        if (activity == "learn" || activity == "school" || activity == "write" || activity == "programming" || activity == "art") {
+        var act_dur = sub_table[str(i)].obj.duration;
+        if (activity == "learn 1" || activity == "learn 2" || activity == "school 1" || activity == "school 2") {
           push();
           noStroke();
           rect_color = color(0);
           rect_color.setAlpha(40);
           fill(rect_color);
-          rect(x1*width, ((105-52)/105)*height - (17/105)*height, x2*width-x1*width, (17/105)*height); // 1st break
-          rect(x1*width, 0, x2*width-x1*width, (6/105)*height); // 2nd break
+
+          var breaks = Math.floor(act_dur/69);
+          for (const x of Array(breaks).keys()) {
+            rect(x1*width, ((69*(x+1))/act_dur)*height - (17/act_dur)*height, x2*width-x1*width, (17/act_dur)*height);
+          }
           pop();
         }
+        // hour markers
+        push();
+        textSize(12);
+        fill(0);
+        strokeWeight(0.1);
+        for (let step = 1; step < 24; step++) {
+          text(str(step), step/24*width, 0.98*height)
+        }
+        pop();
       }
     }
     // SINGLE VIEW VERSION  
@@ -167,18 +185,21 @@ function draw() {
           fill(0);
           text(current_task, width/2, height/2);
           textSize(12);
-          text(str(parseInt(elapsed/60))+"\n-\n" + str(parseInt(duration/60)), elapsed/duration*width, height/2);
-          
+          text(str(parseInt(elapsed/60))+"\n-\n" + str(parseInt(duration/60)), elapsed/duration*width, 2*height/3);
           // add break rects
           var activity = sub_table[str(i)].obj.activity;
-          if (activity == "learn" || activity == "school" || activity == "write" || activity == "programming" || activity == "art") {
+          var act_dur = sub_table[str(i)].obj.duration;
+          if (activity == "learn 1" || activity == "learn 2" || activity == "school 1" || activity == "school 2") {
             push();
             noStroke();
             rect_color = color(0);
             rect_color.setAlpha(20);
             fill(rect_color);
-            rect((52/105)*width, 0, (17/105)*width, height); // 1st break
-            rect((99/105)*width, 0, (6/105)*width, height); // 2nd break
+
+            var breaks = Math.floor(act_dur/69);
+            for (const x of Array(breaks).keys()) {
+              rect(((52*(x+1)+x*17)/act_dur)*width, 0, (17/act_dur)*width, height);
+            }
             pop();
           }
         } 
