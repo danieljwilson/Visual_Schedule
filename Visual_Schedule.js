@@ -31,16 +31,8 @@ function draw() {
   var d = date.getDay();               // d is an int from 0-6
 
   // Create subtable based on weekday
-  if (d==1 || d==4) {          // m/th
-    sub_table = table.findRows(str(1), 'day');
-  }
-
-  if (d==2 || d==3 ) {                 // t/w
-    sub_table = table.findRows(str(2), 'day');
-  }
-
-  if (d==5 ) {                 // f
-    sub_table = table.findRows(str(3), 'day');
+  if (d>0 & d<6) {          // is it a weekday
+    sub_table = table.findRows(str(d), 'day');
   }
 
   // IF WEEKDAY
@@ -213,6 +205,7 @@ function draw() {
     fill(15);
     rect(0, 0, width, height);
     fill(230);
+    textSize(24);
     text('WEEKEND', width/2, height/2);
   }
   // CHECK FOR ORIENTATION CHANGE

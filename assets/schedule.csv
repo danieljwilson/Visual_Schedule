@@ -1,9 +1,10 @@
 day,start_hour,start_minute,end_hour,end_minute,duration,activity,category,color
 1,0,0,6,45,525,sleep,off,#6da4bf
 1,6,45,7,0,15,wake,work,#ff7373
-1,7,0,9,18,138,learn 1,work,#aed4ff
+1,7,0,7,30,30,am routine,personal,#bada55
+1,7,30,9,18,108,learn 1,work,#aed4ff
 1,9,18,12,28,190,school 1,work,#aed4ff
-1,12,28,13,0,32,lunch,personal,#bada55
+1,12,28,13,0,32,lunch/lab,personal,#bada55
 1,13,0,16,27,207,school 2,work,#aed4ff
 1,16,27,17,19,52,school 3,work,#aed4ff
 1,17,19,19,0,101,kids+,family,#e6db74
@@ -14,9 +15,10 @@ day,start_hour,start_minute,end_hour,end_minute,duration,activity,category,color
 1,22,0,23,59,525,sleep,off,#6da4bf
 2,0,0,6,45,525,sleep,off,#6da4bf
 2,6,45,7,0,15,wake,family,#ff7373
-2,7,0,9,18,138,kids+,family,#e6db74
-2,9,18,10,45,87,exercise,personal,#bada55
-2,10,45,12,46,121,school 1,work,#aed4ff
+2,7,0,9,0,120,kids+,family,#e6db74
+2,9,0,9,30,30,am routine,personal,#bada55
+2,9,30,10,57,87,exercise,personal,#bada55
+2,10,57,12,46,109,school 1,work,#aed4ff
 2,12,46,13,15,29,lunch,personal,#bada55
 2,13,15,16,42,207,school 2,work,#aed4ff
 2,16,42,19,0,138,learn 2,work,#aed4ff
@@ -26,16 +28,46 @@ day,start_hour,start_minute,end_hour,end_minute,duration,activity,category,color
 2,21,30,22,0,30,read,personal,#bada55
 2,22,0,23,59,525,sleep,off,#6da4bf
 3,0,0,6,45,525,sleep,off,#6da4bf
-3,6,45,7,0,15,wake,work,#ff7373
-3,7,0,9,18,138,learn 1,work,#aed4ff
-3,9,18,12,28,190,school 1,work,#aed4ff
-3,12,28,13,0,32,lunch,personal,#bada55
-3,13,0,15,0,120,lab meeting,work,#aed4ff
-3,15,0,16,27,87,school 2,work,#aed4ff
-3,16,27,17,19,52,school 3,work,#aed4ff
-3,17,19,19,0,101,kids+,family,#e6db74
+3,6,45,7,0,15,wake,family,#ff7373
+3,7,0,9,0,120,kids+,family,#e6db74
+3,9,0,9,30,30,am routine,personal,#bada55
+3,9,30,12,46,196,school 1,work,#aed4ff
+3,12,46,13,15,29,lunch,personal,#bada55
+3,13,15,16,42,207,school 2,work,#aed4ff
+3,16,42,19,0,138,learn 2,work,#aed4ff
 3,19,0,20,0,60,dinner,personal,#bada55
 3,20,0,21,0,60,admin,work,#aed4ff
 3,21,0,21,30,30,fun,personal,#bada55
 3,21,30,22,0,30,read,personal,#bada55
 3,22,0,23,59,525,sleep,off,#6da4bf
+4,0,0,6,45,525,sleep,off,#6da4bf
+4,6,45,7,0,15,wake,work,#ff7373
+4,7,0,7,30,30,am routine,personal,#bada55
+4,7,30,9,18,108,learn 1,work,#aed4ff
+4,9,18,10,45,87,exercise,personal,#bada55
+4,10,45,12,28,103,school 1,work,#aed4ff
+4,12,28,13,0,32,lunch,personal,#bada55
+4,13,0,16,27,207,school 2,work,#aed4ff
+4,16,27,17,19,52,school 3,work,#aed4ff
+4,17,19,19,0,101,kids+,family,#e6db74
+4,19,0,20,0,60,dinner,personal,#bada55
+4,20,0,21,0,60,admin,work,#aed4ff
+4,21,0,21,30,30,fun,personal,#bada55
+4,21,30,22,0,30,read,personal,#bada55
+4,22,0,23,59,525,sleep,off,#6da4bf
+5,0,0,6,45,525,sleep,off,#6da4bf
+5,6,45,7,0,15,wake,work,#ff7373
+5,7,0,7,30,30,am routine,personal,#bada55
+5,7,30,9,18,108,learn 1,work,#aed4ff
+5,9,18,12,28,190,school 1,work,#aed4ff
+5,12,28,13,0,32,lunch,personal,#bada55
+5,13,0,14,0,60,school 2,work,#aed4ff
+5,14,0,15,30,90,lab meeting,work,#aed4ff
+5,15,30,16,39,69,school 2,work,#aed4ff
+5,16,39,17,25,46,school 3,work,#aed4ff
+5,17,25,19,0,95,kids+,family,#e6db74
+5,19,0,20,0,60,dinner,personal,#bada55
+5,20,0,21,0,60,admin,work,#aed4ff
+5,21,0,21,30,30,fun,personal,#bada55
+5,21,30,22,0,30,read,personal,#bada55
+5,22,0,23,59,525,sleep,off,#6da4bf
