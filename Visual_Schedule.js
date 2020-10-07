@@ -1,7 +1,10 @@
 var myFont;
 var sound;
+var work_sound;
+var break_sound;
 var previous_event = 0;
 var version = "full";
+var sound_played = false;
 
 let table;
 let sub_table;
@@ -11,6 +14,8 @@ function preload() {
   table = loadTable('assets/schedule.csv', 'csv', 'header'); // table structure: https://docs.google.com/spreadsheets/d/1O-Ixi8d5Gf1nmgDBYvxo0RLJXK1R2jfMXBvSlnuaFuU/edit?usp=sharing
   myFont = loadFont('assets/Hasklig-ExtraLight.otf');
   sound = loadSound('assets/Electronic_Chime.mp4');
+  work_sound = loadSound('assets/hiho.mp4');
+  break_sound = loadSound('assets/lets_lobby.mp4');
 }
 
 function setup() {
@@ -77,7 +82,6 @@ function draw() {
 
         // ACTIVE ACTIVITY
         if (current_time >= task_time_start && current_time < task_time_end) { // check which activity is currently happening
-          //print('wrong');
           var current_task = str(sub_table[str(i)].obj.activity);
           var duration = task_time_end - task_time_start;
           var elapsed = current_time - task_time_start;
@@ -178,10 +182,28 @@ function draw() {
           text(current_task, width/2, height/2);
           textSize(12);
           text(str(parseInt(elapsed/60))+"\n-\n" + str(parseInt(duration/60)), elapsed/duration*width, 2*height/3);
-          // add break rects
+          
+          // add breaks
           var activity = sub_table[str(i)].obj.activity;
           var act_dur = sub_table[str(i)].obj.duration;
           if (activity == "learn 1" || activity == "learn 2" || activity == "school 1" || activity == "school 2") {
+            //work sound
+            if (elapsed==0 || elapsed==69*60 || elapsed==138*60 || elapsed==207*60 & sound_played==false){
+              work_sound.play();
+              sound_played=true;
+            }
+            if (elapsed==0 || elapsed==69*60 || elapsed==138*60 || elapsed==207*60){
+              sound_played=false;
+            }
+            // break sound
+            if (elapsed == 52*60 || elapsed==121*60 || elapsed==190*60 & sound_played==false){
+              break_sound.play();
+              sound_played=true;
+            }
+            if (elapsed == 53*60 || elapsed==122*60 || elapsed==191*60){
+              sound_played=false;
+            }
+            // draw rects
             push();
             noStroke();
             rect_color = color(0);
