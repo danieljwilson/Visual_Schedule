@@ -38,6 +38,9 @@ function draw() {
   // Create subtable based on weekday
   sub_table = table.findRows(str(d), 'day');
 
+  // List of break activities
+  const break_activities = ["learn 1", "learn 2", "school 1", "school 2", "school 3", "writing"];
+
   // FULL VERSION VIEW
   if (version == "full") {
     for (var i = 0; i < Object.keys(sub_table).length; i = i + 1) {
@@ -112,7 +115,8 @@ function draw() {
       // add break rects
       var activity = sub_table[str(i)].obj.activity;
       var act_dur = sub_table[str(i)].obj.duration;
-      if (activity == "learn 1" || activity == "learn 2" || activity == "school 1" || activity == "school 2" || activity == "school 3") {
+
+      if (break_activities.includes(activity)) {
         push();
         noStroke();
         rect_color = color(0);
@@ -183,7 +187,7 @@ function draw() {
         // add breaks
         var activity = sub_table[str(i)].obj.activity;
         var act_dur = sub_table[str(i)].obj.duration;
-        if (activity == "learn 1" || activity == "learn 2" || activity == "school 1" || activity == "school 2" || activity == "school 3") {
+        if (break_activities.includes(activity)) {
           //work sound
           if (elapsed == 0 || elapsed == 69 * 60 || elapsed == 138 * 60 || elapsed == 207 * 60 & sound_played == false) {
             work_sound.play();
